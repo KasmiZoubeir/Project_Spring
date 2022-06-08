@@ -14,12 +14,38 @@ public class MaterielDaoImpl extends GenericDAO<Materiel> implements MaterielDao
     }
 
     @Override
-    public Materiel findOne(Long id) {
-        return super.findOne("SELECT * FROM MATERIEL WHERE ID=?;", id);
+    public Materiel findone(Long id) {
+        return super.findone("SELECT * FROM MATERIEL WHERE ID=?;", id);
     }
 
     @Override
     protected MaterielRowMapper getRowMapper() { // template method design pattern
         return new MaterielRowMapper();
     }
+
+	@Override
+	public void create(Materiel t) {
+		String sql="INSERT INTO materiel(name, code) VALUES(?,?) ";
+		super.createExe(sql,t.getName(),t.getCode());
+		
+	}
+
+	@Override
+	public void update(Materiel t, Long id) {
+		String sql="UPDATE materiel set name=?,code=? where ID=? ; ";
+		super.updateExe(sql,t.getName(),t.getCode());
+		
+	}
+
+	@Override
+	public void delete(Long id) {
+		
+		String sql="delete from materiel where ID=? ";
+		super.deletExe(sql, id);
+
+	}
+
+	
+
+	
 }
