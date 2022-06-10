@@ -15,7 +15,7 @@ public class MaterielDaoImpl extends GenericDAO<Materiel> implements MaterielDao
 
     @Override
     public Materiel findone(Long id) {
-        return super.findone("SELECT * FROM MATERIEL WHERE ID=?;", id);
+        return super.findone("SELECT * FROM MATERIEL WHERE id_materiel=?;", id);
     }
 
     @Override
@@ -33,15 +33,15 @@ public class MaterielDaoImpl extends GenericDAO<Materiel> implements MaterielDao
 
 	@Override
 	public void update(String Name,String Code, Long id) {
-		String sql="UPDATE materiel set name=?,code=? where ID=? ; ";
-		super.updateExe(sql,Name,Code);
+		String sql="UPDATE materiel set name=?,code=? where id_materiel=? ; ";
+		super.updateExe(sql,Name,Code,id);
 		
 	}
 
 	@Override
 	public void delete(Long id) {
 		
-		String sql="delete from materiel where ID=? ";
+		String sql="delete from materiel where id_materiel=? ";
 		super.EXE(sql, id);
 
 	}
@@ -50,8 +50,10 @@ public class MaterielDaoImpl extends GenericDAO<Materiel> implements MaterielDao
 
 	@Override
 	public List<Materiel> listeMaterielAlloue(Long id) {
-	 String sql="SELECT * FROM MATERIEL WHERE UTILISATEUR_ID=?";
-		return super.MaterelAlloueExe(sql,id);
+	 String sql="SELECT * FROM MATERIEL WHERE user_id=?";
+	 
+	
+		return super.MaterelAlloueExe("SELECT * FROM MATERIEL WHERE user_id=?",id);
 	}
 
 	@Override
@@ -63,13 +65,13 @@ public class MaterielDaoImpl extends GenericDAO<Materiel> implements MaterielDao
 @Override
 public void allouerMateriel(Long id_M, String dure, Long id_user, String user_name) {
 	
-	String sql = "UPDATE MATERIEL SET ALLOUE = TRUE , DUREE=? , UTILISATEUR_ID = ? , UTILISATEUR_USERNAME = ? WHERE ID_MATERIEL=?";
+	String sql = "UPDATE MATERIEL SET alloue = TRUE , DUREE=? , user_id = ? , user_username = ? WHERE id_materiel=?";
 	 super.allouerExe(sql,dure,id_user,user_name,id_M);
 }
 
 @Override
 public void rendreMateriel(Long id_M) {
-	String sql ="UPDATE MATERIEL SET ALLOUE = FALSE  , UTILISATEUR_ID = NULL, DUREE = NULL, UTILISATEUR_USERNAME = NULL WHERE ID_MATERIEL=?";
+	String sql ="UPDATE MATERIEL SET ALLOUE = FALSE  , user_id = NULL, DUREE = NULL, user_username = NULL WHERE ID_MATERIEL=?";
 	super.EXE(sql,id_M);
 }
 

@@ -12,6 +12,7 @@ CREATE TABLE materiel
     disponible BOOLEAN DEFAULT true ,
     alloue BOOLEAN DEFAULT FALSE,
     duree varchar(250) NULL,
+    
 );
 
 CREATE TABLE UTILISATEUR

@@ -49,17 +49,17 @@ public abstract class GenericDAO<T> implements InitializingBean {
        	 System.out.println("error" );
        }
        }
-    public void updateExe(String query,String name,String Code){
-        int update =	jdbcTemplate.update(query,name,Code);
+    public void updateExe(String query,String name,String Code,Long id){
+        int update =	jdbcTemplate.update(query,name,Code,id);
         if(update == 1) {
-       	 System.out.println("Materiel Updated Succesfly" + name);
+       	 System.out.println("Materiel Updated Succesfly " + name);
         }else {
        	 System.out.println("error" );
        }
        }
     
 public List<T> MaterelAlloueExe(String query,Long id){
-	return jdbcTemplate.query(query, getRowMapper());
+	return jdbcTemplate.query(query, getRowMapper(),id);
 }
 	public void allouerExe(String query,String dure,Long id_user,String user_name,Long id_M) {
 		int alloer =	jdbcTemplate.update(query,dure,id_user,user_name,id_M);

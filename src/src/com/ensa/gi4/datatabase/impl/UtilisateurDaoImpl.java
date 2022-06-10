@@ -21,8 +21,9 @@ public class UtilisateurDaoImpl extends GenericDAO<Utilisateur> implements Utili
 
 	@Override
 	public Utilisateur find_user() {
-		do {
-	            //isTrue = false;
+		while(true){
+		
+		isValide = false;
 	            Scanner scanner = new Scanner(System.in);
 	            System.out.println("username : ");
 	            userName = scanner.next();
@@ -63,7 +64,7 @@ public class UtilisateurDaoImpl extends GenericDAO<Utilisateur> implements Utili
 	                    continue;
 	                }
 	            }
-		}while(true);
+		}
 	}
 
     

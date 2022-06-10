@@ -39,7 +39,7 @@ public class GestionMaterielController {
 
         Scanner scanner = new Scanner(System.in);
         String next = scanner.next();
-
+        
         if ("0".equals(next)) {
             sortie();
         }
@@ -88,6 +88,8 @@ public class GestionMaterielController {
         System.out.println("7- Rendre un materiel, tapper 7");
         System.out.println("8- Afficher la liste des matériels alloués par vous, tapper 8");
         System.out.println("9- Afficher la liste des matériels alloués par chaque utilisateur, tapper 9");
+        System.out.println("10- Afficher la liste de tout les materiel, tapper 10");
+        System.out.println("11- Deconnixion, tapper 11");
         Scanner scannerAdmin  = new Scanner(System.in);
         String next = scannerAdmin.next();
         if ("0".equals(next)) {
@@ -179,6 +181,13 @@ public class GestionMaterielController {
         }else if("9".equals(next)) {
         	gestionMaterielServiceImpl.listeToutMaterielAlloue();
         }
+        else if("10".equals(next)) {
+        	gestionMaterielServiceImpl.listerMateriel();
+        }
+        else if("11".equals(next)) {
+        	System.out.println("vous ete deconnecter");
+        	MENU();
+        }
         else {
             System.out.println("Choix invalide !!!");
         }
@@ -191,6 +200,7 @@ public class GestionMaterielController {
          System.out.println("3- Rendre un materiel");
          System.out.println("4- Afficher la liste des matériels alloués par cet utilisateur");
          System.out.println("5- Afficher la liste de tout les matteril");
+         System.out.println("6-Deconnexion");
 
 
         Scanner scanner = new Scanner(System.in);
@@ -222,6 +232,9 @@ public class GestionMaterielController {
         	gestionMaterielServiceImpl.listeMaterielAlloue(user.getId_utilisateur());
         }else if("5".equals(next)){
         	gestionMaterielServiceImpl.listerMateriel();
+        }else if("6".equals(next)) {
+        	System.out.println("vous ete deconnecter");
+        	MENU();
         }
         else {
             System.out.println("Choix invalide !!!");

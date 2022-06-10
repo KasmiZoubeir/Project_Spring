@@ -51,6 +51,7 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
 
 	@Override
 	public void chercherMateriel(Long id) {
+		
 		 System.out.println(materielDao.findone(id));
 		
 	}
@@ -94,6 +95,7 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
 				System.out.println(username_user + " Vous avez allouer le materiel pour une duree de "+ dure);
 			}else {
 				System.out.println("Le materiel n'est pas disponible");
+				
 			}
     	}catch(Exception e) {
     		System.out.println("error");
@@ -106,7 +108,7 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
 	public void rendreMateriel(Long id_M) {
 		
 		 Materiel  materiel = materielDao.findone(id_M);
-	        if(materiel.getAlloue()){
+	        if(!materiel.getDisponible()){
 	            materielDao.rendreMateriel(id_M);
 	            System.out.println("Merciiii le matériel est rendu...");
 	        }else System.out.println("Vous avez pas déja alloue !!!");
@@ -134,8 +136,9 @@ public class GestionMaterielServiceImpl implements GestionMaterielService {
 
         System.out.println("Username  Materiele ********** Code");
         for (Materiel materiel : list_materiel){
+        	if(materiel.getUsername_user() != null) {
             System.out.println("Username : "+materiel.getUsername_user()+" Materiele : "+materiel.getName()+" Code : "+materiel.getCode());
-
+        	}
         }
 		
 	}
