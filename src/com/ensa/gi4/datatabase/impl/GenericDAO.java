@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.ensa.gi4.modele.Materiel;
+import com.ensa.gi4.modele.Utilisateur;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -42,19 +43,42 @@ public abstract class GenericDAO<T> implements InitializingBean {
         int insert =	jdbcTemplate.update(query,name,Code);
         if(insert == 1) {
        	 System.out.println("New Materiel Created Succesfly" + name);
-        }
+        }else {
+       	 System.out.println("error" );
+       }
        }
     public void updateExe(String query,String name,String Code){
         int update =	jdbcTemplate.update(query,name,Code);
         if(update == 1) {
        	 System.out.println("Materiel Updated Succesfly" + name);
-        }
+        }else {
+       	 System.out.println("error" );
        }
-    public void deletExe(String query, Long id) {
-    	jdbcTemplate.update(query,id);
-    }
+       }
+    
+public List<T> MaterelAlloueExe(String query,Long id){
+	return jdbcTemplate.query(query, getRowMapper());
+}
+	public void allouerExe(String query,String dure,Long id_user,String user_name,Long id_M) {
+		int alloer =	jdbcTemplate.update(query,dure,id_user,user_name,id_M);
+        if(alloer == 1) {
+       	 System.out.println("New Materiel alloue Succesfly pour" + user_name);
+        }else {
+        	 System.out.println("error" );
+        }
+	}
 
+public void EXE(String query, Long id_M) {
+	int good = jdbcTemplate.update(query,id_M);
+	if(good != 1) {
+		System.out.println("error");
+	}
+}
+public Utilisateur TrouverModeDePasse(String query,String username) {
 	
+	        return (Utilisateur) jdbcTemplate.queryForObject(query, getRowMapper(), username);
+	    
+}
 
 	
 

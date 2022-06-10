@@ -4,7 +4,7 @@ public abstract class Utilisateur {
 	private String username;
 	private String Password;
 	private String role;
-	private int id_utilisateur;
+	private Long id_utilisateur;
 	public String getUsername() {
 		return username;
 	}
@@ -23,10 +23,10 @@ public abstract class Utilisateur {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public int getId_utilisateur() {
+	public Long getId_utilisateur() {
 		return id_utilisateur;
 	}
-	public void setId_utilisateur(int id_utilisateur) {
+	public void setId_utilisateur(Long id_utilisateur) {
 		this.id_utilisateur = id_utilisateur;
 	}
 	@Override

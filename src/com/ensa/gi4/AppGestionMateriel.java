@@ -27,26 +27,11 @@ public class AppGestionMateriel {
 
     public static void main(String[] args) {
         final GestionMaterielController gestionMaterielController = (GestionMaterielController) APPLICATION_CONTEXT.getBean("controllerPricipal");
-        System.out.println("All Materiel---------------------------");
-        List<Materiel> materiel=dao.findAll();
-        materiel.forEach(System.out::println);
-        System.out.println("Create Materiel---------------------------");
-        Materiel t = null;
-        t.setCode("555");
-        t.setName("korsii");
-       dao.create(t);
-       System.out.println("find One Materiel---------------------------");
-       Materiel t1=dao.findone(5);
-       System.out.println(t1);
-       System.out.println("update Materiel---------------------------");
-       t.setName("hhh updated");
-       dao.update(t, 555);
-       System.out.println("delet Materiel---------------------------");
-       dao.delete(1);
+       
 
 
         while (true) { // pour que l'appliation tourne jusqu'à la demande de l'utilisateur de l'arrêter
-            gestionMaterielController.afficherMenu();
+            gestionMaterielController.MENU();
         }
 
     }
