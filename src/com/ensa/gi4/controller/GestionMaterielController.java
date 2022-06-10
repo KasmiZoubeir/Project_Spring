@@ -8,6 +8,7 @@ import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.modele.Utilisateur;
+import com.ensa.gi4.service.api.GestionMaterielService;
 import com.ensa.gi4.service.impl.GestionMaterielServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,15 @@ import java.util.Scanner;
 public class GestionMaterielController {
 
     @Autowired
-
     ApplicationPublisher publisher;
-    
-    
+
     @Autowired
     @Qualifier("materielService")
-    GestionMaterielServiceImpl gestionMaterielServiceImpl;
+    private GestionMaterielService gestionMaterielServiceImpl;
+
     @Autowired
     private UtilisateurDaoImpl log;
+
     Utilisateur user;
 
     public void MENU() {
@@ -74,7 +75,7 @@ public class GestionMaterielController {
 
 
 
-    
+
     public void ADMIN(){
     	System.out.println("---------------Welcome Admin------------------");
     	  System.out.println("0- pour sortir de l'application, entrer 0");
@@ -92,12 +93,12 @@ public class GestionMaterielController {
         if ("0".equals(next)) {
         	sortie();
         } else if("1".equals(next)) {
-        	
-        	gestionMaterielServiceImpl.listerMateriel();;
-       	 System.out.println("Saiasir ID du materiel");            	            	
+
+        	gestionMaterielServiceImpl.listerMateriel();
+       	 System.out.println("Saiasir ID du materiel");
             Long ID = scannerAdmin.nextLong();
             gestionMaterielServiceImpl.chercherMateriel(ID);
-            
+
         }else if("2".equals(next)) {
        	 System.out.println("Choisir le nom du materiel Livre(tapper1)  ou Chaise(tapper2)");
        	 String choice=scannerAdmin.next();
@@ -117,7 +118,7 @@ public class GestionMaterielController {
            	 materiel.setCode(code);
            	gestionMaterielServiceImpl.ajouterNouveauMateriel(materiel);
        	 }else {
-       		System.out.println("error : choisir un nombre entre 1 et 2"); 
+       		System.out.println("error : choisir un nombre entre 1 et 2");
        	 }
         }else if("3".equals(next)) {
         	gestionMaterielServiceImpl.listerMateriel();;
@@ -139,7 +140,7 @@ public class GestionMaterielController {
              	 String code_new=scannerAdmin.next();
              	System.out.println("Nouveau name");
              	 String name_new=scannerAdmin.next();
-              	
+
            	gestionMaterielServiceImpl.modifierMateriel(id_M, code_new, name_new);
        	 }else {
        		 System.out.println("Ce materiel n'existe pas");
@@ -148,9 +149,9 @@ public class GestionMaterielController {
         	 gestionMaterielServiceImpl.listerMateriel();
              System.out.println("Saiasir ID du materiel");
              Long ID = (long) scannerAdmin.nextInt();
-             
-             
-        	
+
+
+
        	 if(gestionMaterielServiceImpl.isExiste(ID)) {
        		gestionMaterielServiceImpl.rendreMaterielIndisponible(ID);
        	 }else {
@@ -167,7 +168,7 @@ public class GestionMaterielController {
                 gestionMaterielServiceImpl.rendreMaterielIndisponible(ID);
             }else System.out.println("indisponible ");
 
-       	
+
         }else if("7".equals(next)) {
         	  gestionMaterielServiceImpl.listerMateriel();
               System.out.println("Saiasir ID du materiel");
@@ -190,7 +191,7 @@ public class GestionMaterielController {
          System.out.println("3- Rendre un materiel");
          System.out.println("4- Afficher la liste des matériels alloués par cet utilisateur");
          System.out.println("5- Afficher la liste de tout les matteril");
-         
+
 
         Scanner scanner = new Scanner(System.in);
         String next = scanner.next();

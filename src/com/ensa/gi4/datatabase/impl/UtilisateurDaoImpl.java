@@ -10,7 +10,9 @@ import com.ensa.gi4.datatabase.api.MaterielDao;
 import com.ensa.gi4.datatabase.api.UtilisateurDao;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.modele.Utilisateur;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UtilisateurDaoImpl extends GenericDAO<Utilisateur> implements UtilisateurDao {
 	 String userName;
 	    String password ;
@@ -30,7 +32,7 @@ public class UtilisateurDaoImpl extends GenericDAO<Utilisateur> implements Utili
 
 
 	            try {
-	            	String sql="SELECT * FROM USER WHERE username=?;";
+	            	String sql="SELECT * FROM UTILISATEUR WHERE username=?;";
 	                Utilisateur user = super.TrouverModeDePasse(sql, userName);
 	                String vrai_code = user.getPassword();
 	                if (isValide == false) {

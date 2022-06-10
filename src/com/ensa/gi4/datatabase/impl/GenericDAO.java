@@ -8,11 +8,13 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.modele.Utilisateur;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 public abstract class GenericDAO<T> implements InitializingBean {
+
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
